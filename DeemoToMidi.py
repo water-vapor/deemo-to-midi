@@ -23,7 +23,6 @@ def convert_file(json_path, dest):
 def convert_dir(input_folder, dest_folder):
     file_names=[fn for fn in os.listdir(input_folder) if fn[-13:]=='hard.json.txt']
     for json_file in file_names:
-        convert_file(os.path.join(input_folder,json_file), os.path.join(dest_folder,json_file+'.mid'))
         try:
             convert_file(os.path.join(input_folder,json_file), os.path.join(dest_folder,json_file+'.mid'))
         except:
