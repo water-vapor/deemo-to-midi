@@ -4,6 +4,7 @@ def convert_file(json_path, dest):
     with open(json_path) as f:
         data = json.load(f)
     mid = midiutil.MIDIFile(1)
+    mid.addTempo(0, 0, 60)
     for notes in data['notes']:
         if 'sounds' not in notes:
             continue
