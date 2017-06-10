@@ -4,20 +4,19 @@ def convert_file(json_path, dest):
     with open(json_path) as f:
         data = json.load(f)
     mid = midiutil.MIDIFile(1)
-    mid.addTempo(0, 0, data["speed"] * 10.0)
     for notes in data['notes']:
         if 'sounds' not in notes:
             continue
         if '_time' not in notes:
             time = 0
         else:
-            time = notes['_time'] * 2.0
+            time = notes['_time']
         for note in notes['sounds']:
             if 'd' not in note:
                 continue
             if note['d']==0 or note['v']==0:
                 continue
-            mid.addNote(0,0,note['p'],time,note['d'] * 2.0,note['v'])
+            mid.addNote(0,0,note['p'],time,note['d'],note['v'])
     with open(dest, 'wb') as output_file:
         mid.writeFile(output_file)
 
